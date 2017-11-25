@@ -22,12 +22,7 @@ if(!function_exists( 'cf3_setup' ))
  */
 if(!function_exists( 'cf3_remove_welcome_panel' ))
 {
-    function cf3_remove_welcome_panel(){
-        remove_action( 'welcome_panel', 'wp_welcome_panel' );
-        add_action( 'welcome_panel', 'cf_welcome_panel' );
-    }
-
-    function cf_welcome_panel(){
+    function cf3_welcome_panel(){
         file_exists(STYLESHEETPATH.'/welcome-panel.xml')?
             $welcome = simplexml_load_file(STYLESHEETPATH.'/welcome-panel.xml'):
             $welcome = simplexml_load_file(TEMPLATEPATH.'/welcome-panel.xml');
@@ -51,6 +46,10 @@ if(!function_exists( 'cf3_remove_welcome_panel' ))
         <h4>More Information</h4>
         <p>'.$welcome->info.'</p>
         </div></div></div>';
+    }
+    function cf3_remove_welcome_panel(){
+        remove_action( 'welcome_panel', 'wp_welcome_panel' );
+        add_action( 'welcome_panel', 'cf3_welcome_panel' );
     }
     add_action( 'load-index.php', 'cf3_remove_welcome_panel' );
 }
