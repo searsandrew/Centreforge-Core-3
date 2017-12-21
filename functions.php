@@ -11,7 +11,6 @@ if(!function_exists( 'cf3_setup' ))
         add_theme_support('automatic-feed-links');
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
-        add_theme_support('custom-header');
         add_theme_support('custom-background');
         add_theme_support('html5', array(
             'comment-form',
@@ -115,3 +114,10 @@ function cf3_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'cf3_pingback_header' );
+
+/**
+ * Implement the Custom Header feature.
+ * since: centreforge 3.0.0
+ * modified: centreforge 3.0.0
+ */
+require get_parent_theme_file_path( '/inc/custom-header.php' );
